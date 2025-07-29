@@ -14,15 +14,15 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
      If I want to run exercise_05 below, 
      I would change the code below from "exercise_01()" to
      "exercise_05()", save this file. 
-		 
-		 Then, when I run this file by running `node exercise.js`
+     
+     Then, when I run this file by running `node exercise.js`
      in the VS Code terminal while inside this folder, your code 
      for exercise_05 will run.
 
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_01();
+  exercise_02();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -42,7 +42,22 @@ function exercise_01() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function logNumberSync() {
+    for (let i = 1; i <= 5; i++) {
+      console.log(`Sync: ${i}`);
+    }
+  }
+  logNumberSync();
+
+  function logNumberAsync() {
+    for (let i = 1; i <= 5; i++) {
+      setTimeout(() => {
+        console.log(`Async: ${i}`);
+      }, i * 1000);
+    }
+  }
+  logNumberAsync();
+
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -61,7 +76,18 @@ function exercise_02() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function fetchData (callback) {
+    console.log(`Fetching data...`);
+
+    setTimeout(() => {
+      const data = {id: 1, message: "Data"}
+      callback(data);
+    }, 2000);
+  }
+
+  fetchData((data) => {
+    console.log(`Fetched: `, data);
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -332,8 +358,8 @@ function exercise_16() {
     Exercise 16
     
     Fetch API: 
-		
-		Use the `fetch` API to make a GET request.
+  	
+    Use the `fetch` API to make a GET request.
 
     Make this request to the following url:
     "https://jsonplaceholder.typicode.com/todos/1"
@@ -403,8 +429,8 @@ function exercise_18() {
     Exercise 18
     
     Using `Promise.all`: 
-		
-		Make two promises run concurrently by using Promise.all.
+  	
+    Make two promises run concurrently by using Promise.all.
     Once they are both finished, log their results to the console.
 
     We have created a Promise based `sleep` function above that takes an integer
@@ -431,8 +457,8 @@ function exercise_19() {
     Exercise 19
     
     Using `Promise.race`: 
-		
-		Using Promise.race, log the result of the first promise to out of an array
+  	
+    Using Promise.race, log the result of the first promise to out of an array
     of them.
 
     We have created a Promise based `sleep` function above that takes an integer
@@ -463,8 +489,8 @@ function exercise_20() {
     Exercise 20
     
     Using `Promise.allSettled`
-		
-		Use Promise.allSettled to check when an array of promises settle.
+  	
+    Use Promise.allSettled to check when an array of promises settle.
 
     We have defined a `promiseList` for you to use above
   
