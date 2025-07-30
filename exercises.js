@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_03();
+  exercise_04();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -126,8 +126,6 @@ function exercise_03() {
         console.log(content);
       }
     });
-      
-    
   
 
   // CODE IN THE OPEN LINES ABOVE
@@ -146,8 +144,33 @@ function exercise_04() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function task1(callback) {
+    setTimeout(() => {
+          console.log("Task 1 complete");
+          callback();
+    }, 1000);
+  }
 
+  function task2(callback) {
+    setTimeout(() => {
+      console.log("Task 2 complete");
+      callback();
+    }, 1000);
+  }
+
+  function task3(callback) {
+    setTimeout(() => {
+      console.log("Task 3 complete");
+      callback();
+    }, 1000);
+  }
+
+  task1(() => {
+    task2(() => {
+      task3(() => console.log("All tasks complete"));
+    });
+  });
+  
   // CODE IN THE OPEN LINES ABOVE
 }
 
