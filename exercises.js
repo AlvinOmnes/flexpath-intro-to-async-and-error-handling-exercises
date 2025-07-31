@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_05();
+  exercise_06();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -76,11 +76,11 @@ function exercise_02() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  function fetchData (callback) {
+  function fetchData(callback) {
     console.log(`Fetching data...`);
 
     setTimeout(() => {
-      const data = {id: 1, message: "Data"}
+      const data = { id: 1, message: "Data" }
       callback(data);
     }, 2000);
   }
@@ -108,25 +108,25 @@ function exercise_03() {
   // CODE IN THE OPEN LINES BELOW
 
   function readFile(filename, callback) {
-      setTimeout(() => {
-        if (filename === "data.txt") {
-          callback (null, "File content");
-        }
-        else {
-          callback(new Error("File not found"))
-        }
-      }, 1000);
-    }
-    
-    readFile('datax.txt', (err, content) => {
-      if(err){
-        console.error(err.message);
+    setTimeout(() => {
+      if (filename === "data.txt") {
+        callback(null, "File content");
       }
       else {
-        console.log(content);
+        callback(new Error("File not found"))
       }
-    });
-  
+    }, 1000);
+  }
+
+  readFile('datax.txt', (err, content) => {
+    if (err) {
+      console.error(err.message);
+    }
+    else {
+      console.log(content);
+    }
+  });
+
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -146,8 +146,8 @@ function exercise_04() {
 
   function task1(callback) {
     setTimeout(() => {
-          console.log("Task 1 complete");
-          callback(); // calls the "callback" from the parameter. Executes the code passed from the parameter.
+      console.log("Task 1 complete");
+      callback(); // calls the "callback" from the parameter. Executes the code passed from the parameter.
     }, 1000);
   }
 
@@ -170,7 +170,7 @@ function exercise_04() {
       task3(() => console.log("All tasks complete"));
     });
   });
-  
+
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -187,26 +187,26 @@ function exercise_05() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-function readFile(filename) {
-  return new Promise ((resolve, reject) => {
-    setTimeout(() => {
-      if (filename === "data.txt") {
-        resolve ("File content");
-      }
-      else {
-        reject(new Error("File not found"))
-      }
-    }, 1000);
-  });
-}
+  function readFile(filename) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (filename === "data.txt") {
+          resolve("File content");
+        }
+        else {
+          reject(new Error("File not found"))
+        }
+      }, 1000);
+    });
+  }
 
-readFile('data.txt')
-  .then((content) => {
-    console.log(content)
-  })
-  .catch(err => {
-    console.log(err.message)
-  });
+  readFile('data.txt')
+    .then((content) => {
+      console.log(content)
+    })
+    .catch(err => {
+      console.log(err.message)
+    });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -225,7 +225,76 @@ function exercise_06() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  // function task1() => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if() {
+  //         resolve();
+  //       }
+  //       else {
+  //         reject();
+  //       }
+  //     }, 1000);
+  //   });
+  // }
+
+  // function task2() => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if() {
+  //         resolve();
+  //       }
+  //       else {
+  //         reject();
+  //       }
+  //     }, 1000);
+  //   });
+  // }
+
+  // function task3() => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if() {
+  //         resolve();
+  //       }
+  //       else {
+  //         reject();
+  //       }
+  //     }, 1000);
+  //   });
+  // }
+
+  function task1() {
+    return new Promise((resolve) => {
+      setTimeout(()=> {
+        console.log("Task 1 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task2() {
+    return new Promise((resolve) => {
+      setTimeout(()=> {
+        console.log("Task 2 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task3() {
+    return new Promise((resolve) => {
+      setTimeout(()=> {
+        console.log("Task 3 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+
+  task1()
+  .then(task2)
+  .then(task3)
+  .then(() => {
+    console.log("All tasks completed")
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }
