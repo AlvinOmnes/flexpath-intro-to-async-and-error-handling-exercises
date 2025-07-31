@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_04();
+  exercise_05();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -147,7 +147,7 @@ function exercise_04() {
   function task1(callback) {
     setTimeout(() => {
           console.log("Task 1 complete");
-          callback();
+          callback(); // calls the "callback" from the parameter. Executes the code passed from the parameter.
     }, 1000);
   }
 
@@ -187,7 +187,26 @@ function exercise_05() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+function readFile(filename) {
+  return new Promise ((resolve, reject) => {
+    setTimeout(() => {
+      if (filename === "data.txt") {
+        resolve ("File content");
+      }
+      else {
+        reject(new Error("File not found"))
+      }
+    }, 1000);
+  });
+}
+
+readFile('data.txt')
+  .then((content) => {
+    console.log(content)
+  })
+  .catch(err => {
+    console.log(err.message)
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }
