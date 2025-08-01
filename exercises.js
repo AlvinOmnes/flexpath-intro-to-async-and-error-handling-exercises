@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_06();
+  exercise_09();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -266,7 +266,7 @@ function exercise_06() {
 
   function task1() {
     return new Promise((resolve) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         console.log("Task 1 complete")
         resolve();
       }, 1000);
@@ -274,7 +274,7 @@ function exercise_06() {
   }
   function task2() {
     return new Promise((resolve) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         console.log("Task 2 complete")
         resolve();
       }, 1000);
@@ -282,7 +282,7 @@ function exercise_06() {
   }
   function task3() {
     return new Promise((resolve) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         console.log("Task 3 complete")
         resolve();
       }, 1000);
@@ -290,11 +290,11 @@ function exercise_06() {
   }
 
   task1()
-  .then(task2)
-  .then(task3)
-  .then(() => {
-    console.log("All tasks completed")
-  });
+    .then(task2)
+    .then(task3)
+    .then(() => {
+      console.log("All tasks completed")
+    });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -312,7 +312,40 @@ async function exercise_07() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function task1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 1 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Task 2 failed")
+        reject(new Error("Task 2 failed"));
+      }, 1000);
+    });
+  }
+  function task3() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 3 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+
+  task1()
+    .then(task2)
+    .then(task3)
+    .then(() => {
+      console.log("All tasks completed")
+    })
+    .catch((err) => {
+      console.error("Error", err.message)
+    });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -331,7 +364,43 @@ async function exercise_08() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function task1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 1 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Task 2 failed")
+        reject(new Error("Task 2 failed"));
+      }, 1000);
+    });
+  }
+  function task3() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 3 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+
+  task1()
+    .then(task2)
+    .then(task3)
+    .then(() => {
+      console.log("All tasks completed")
+    })
+    .catch((err) => {
+      console.error("Error", err.message)
+    })
+    .finally(() => {
+      console.log("Process completed")
+    });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -350,7 +419,54 @@ async function exercise_09() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  // ASYNC = makes a function return a promise
+  // AWAIT = makes an async function wait for a promise
+
+  function task1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 1 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task2() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 2 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task3() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 3 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+
+  async function doTasks() {
+    try {
+      const task1Result = await task1();
+      const task2Result = await task2();
+      const task3Result = await task3();
+      console.log("All tasks complete");
+    }
+    catch (err) {
+      console.log("Error :", err.message);
+    }
+  }
+
+  doTasks();
+
+  // task1()
+  // .then(task2)
+  // .then(task3)
+  // .then(() => {
+  //   console.log("All tasks completed")
+  // });
 
   // CODE IN THE OPEN LINES ABOVE
 }
