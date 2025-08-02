@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_12();
+  exercise_17();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -550,10 +550,10 @@ async function exercise_11() {
   // CODE IN THE OPEN LINES BELOW
 
   function checkNumber(num) {
-    if(num < 0) {
-      throw new Error ("Number is negative");
+    if (num < 0) {
+      throw new Error("Number is negative");
     }
-    return (console.log ("Number is positive"))
+    return (console.log("Number is positive"))
   }
 
   try {
@@ -563,22 +563,22 @@ async function exercise_11() {
     console.log("Error: ", err.message);
   }
 
-  function fetchData () {
+  function fetchData() {
     console.log("Fetching data...")
     const data = {
       name: "Flynn",
       username: "User"
     };
 
-    return new Promise ((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (data.name != "Flynn") {
-          reject (new Error("Data error"));
+          reject(new Error("Data error"));
         }
         else {
-        console.log("Data fetched")
-        resolve(data);
-      }
+          console.log("Data fetched")
+          resolve(data);
+        }
       }, 5000)
     })
   }
@@ -612,18 +612,18 @@ function exercise_12() {
       
   */
   // CODE IN THE OPEN LINES BELOW
-class ValidationError extends Error {
-    constructor (message) {
+  class ValidationError extends Error {
+    constructor(message) {
       super(message);
       this.name = "ValidationError";
     }
   }
 
-function checkNumber(num) {
-    if(num < 0) {
-      throw new ValidationError ("Number is negative");
+  function checkNumber(num) {
+    if (num < 0) {
+      throw new ValidationError("Number is negative");
     }
-    return (console.log ("Number is positive"))
+    return (console.log("Number is positive"))
   }
 
   try {
@@ -633,7 +633,7 @@ function checkNumber(num) {
     console.log("Error: ", err.message);
   }
 
-  
+
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -655,7 +655,27 @@ function exercise_13() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  // fs.readFile('exercise_example.txt', 'utf8', (err, data) => {
+  //   if(err) {
+  //     console.log('Error reading file');
+  //     throw err;
+  //   }
+  //   try{
+  //   console.log(data);
+  //   console.log("Read File Complete")
+  //   } catch(err) {
+  //   console.error('No content in file')
+  //   throw err;
+  //   }
+  // });
+
+  fs.readFile('exercise_example.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.log("Error: ", err.message);
+    }
+    console.log("Data: ", data);
+    console.log("Read File Complete");
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -677,7 +697,26 @@ function exercise_14() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  (async () => {
+    try {
+      const data = await fsPromises.readFile('exercise_example.txt', 'utf8');
+      console.log("File content: ", data);
+    }
+    catch (err) {
+      console.log("Error: ", err.message);
+    }
+  })();
+
+  //My attempt:
+
+  // fs.readFile('exercise_example.txt', 'utf8')
+  //   .then(data => {
+  //     console.log("File content: ", data);
+  //     console.log('Read File Complete');
+  //   })
+  //   .catch(err => {
+  //     console.log("Error: ", err.message);
+  //   })
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -700,7 +739,18 @@ async function exercise_15() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  async function copyFile(source, destination) {
+    try {
+      const data = await fsPromises.readFile(source, 'utf8');
+      await fsPromises.writeFile(destination, data, 'utf8');
+      console.log(`Successfully copied from ${source} to ${destination}`);
+    }
+    catch (err) {
+      console.log(`Error: Unable to copy from ${source} to ${destination}`);
+    }
+  }
+
+  copyFile("source.txt", "destination.txt");
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -720,16 +770,27 @@ function exercise_16() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  // fetch("https://jsonplaceholder.typicode.com/todos/1")
+  //   .then((response) => response.json())
+  //   .then((data) => console.log("Fetched data: ", data))
+  //   .catch(error => console.log("Fetch error: ", error.message));
+
+  (async () => {
+    try {
+      const response = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+      const data = await response.json();
+      console.log("Fetched data: ", data)
+    }
+    catch (err) {
+      console.log("Fetch error")
+    }
+  })();
 
   // CODE IN THE OPEN LINES ABOVE
 }
 
 function exercise_17() {
-  const errorProneFunction = () => {
-    if (Math.random() > 0.5) throw new Error("Random failure");
-    console.log("Success!");
-  };
+
   /* 
    
     Exercise 17
@@ -766,7 +827,51 @@ function exercise_17() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  const errorProneFunction = () => {
+    if (Math.random() > 0) throw new Error("Random failure");
+    console.log("Success!");
+  };
+
+  function retry(fn, retries) {
+    let attempt = 0;
+    function execute() {
+      try {
+        fn()
+      }
+      catch (err) {
+        if (attempt < retries) {
+          attempt++;
+          console.log(`Retrying function...${attempt}`);
+          execute();
+        }
+        else {
+          console.error("Failed after retries: ", err.message)
+        }
+      }
+    }
+    execute();
+  }
+  retry(errorProneFunction, 3);
+
+  // function retry (attemptFunction) {
+  //   let attempt = 0;
+  //   function execute() {
+  //     try{
+  //       attemptFunction()
+  //     }
+  //     catch{
+  //       if (attempt < retriesLimit) {
+  //         attempt += 1;
+  //         console.log("You are retrying the function")
+  //         execute();
+  //       }
+  //       if (attempt > retriesLimit) {
+  //         console.log("Function failed: ", err.message)
+  //       }
+
+  //     }
+  //   }
+  // }
 
   // CODE IN THE OPEN LINES ABOVE
 }
