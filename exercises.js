@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_09();
+  exercise_12();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -488,7 +488,48 @@ async function exercise_10() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function task1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 1 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+  function task2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Task 2 failed")
+        reject(new Error("Task 2 failed"));
+      }, 1000);
+    });
+  }
+  function task3() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Task 3 complete")
+        resolve();
+      }, 1000);
+    });
+  }
+
+  async function doTasks() {
+    try {
+      const task1Result = await task1();
+      const task2Result = await task2();
+      const task3Result = await task3();
+      console.log("All tasks complete");
+    }
+    catch (err) {
+      console.log("Error :", err.message);
+    }
+    finally {
+      console.log("All tasks complete");
+    }
+  }
+
+  doTasks();
+
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -508,7 +549,51 @@ async function exercise_11() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function checkNumber(num) {
+    if(num < 0) {
+      throw new Error ("Number is negative");
+    }
+    return (console.log ("Number is positive"))
+  }
+
+  try {
+    checkNumber(6);
+  }
+  catch (err) {
+    console.log("Error: ", err.message);
+  }
+
+  function fetchData () {
+    console.log("Fetching data...")
+    const data = {
+      name: "Flynn",
+      username: "User"
+    };
+
+    return new Promise ((resolve, reject) => {
+      setTimeout(() => {
+        if (data.name != "Flynn") {
+          reject (new Error("Data error"));
+        }
+        else {
+        console.log("Data fetched")
+        resolve(data);
+      }
+      }, 5000)
+    })
+  }
+
+  async function dataFetch() {
+    try {
+      const fetchResult = await fetchData();
+      console.log("Fetched: ", fetchResult);
+    }
+    catch (err) {
+      console.error("Error: ", err.message);
+    }
+  }
+
+  dataFetch();
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -527,8 +612,28 @@ function exercise_12() {
       
   */
   // CODE IN THE OPEN LINES BELOW
+class ValidationError extends Error {
+    constructor (message) {
+      super(message);
+      this.name = "ValidationError";
+    }
+  }
 
-  let placeholder = "Delete me and code here";
+function checkNumber(num) {
+    if(num < 0) {
+      throw new ValidationError ("Number is negative");
+    }
+    return (console.log ("Number is positive"))
+  }
+
+  try {
+    checkNumber(-6);
+  }
+  catch (err) {
+    console.log("Error: ", err.message);
+  }
+
+  
 
   // CODE IN THE OPEN LINES ABOVE
 }
