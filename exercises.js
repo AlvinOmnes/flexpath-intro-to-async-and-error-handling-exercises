@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_17();
+  exercise_20();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -899,7 +899,12 @@ function exercise_18() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  const promise1 = sleep(1000).then(()=> "First Promise");
+  const promise2 = sleep(1000).then(()=> "Second Promise");
+
+  Promise.all([promise1, promise2]).then((result) => {
+  console.log("Results: ", result);
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -927,8 +932,22 @@ function exercise_19() {
   
   */
   // CODE IN THE OPEN LINES BELOW
+/* 
+  const promise1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 5000, "one");
+  });
+  const promise2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, "two");
+  });
 
-  let placeholder = "Delete me and code here";
+  Promise.race([promise1, promise2]).then((value) => {console.log(value);
+  }); */
+
+  const promise3 = sleep(1000).then(() => "promise3");
+  const promise4 = sleep(1050).then(() => "promise4");
+  Promise.race([promise3, promise4]).then((result) =>
+    console.log("First to finish: ", result)
+  );
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -955,7 +974,8 @@ function exercise_20() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  Promise.allSettled(promiseList).then((results) => {console.log("Results: ", results);    
+  });
 
   // CODE IN THE OPEN LINES ABOVE
 }

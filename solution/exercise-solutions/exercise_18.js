@@ -26,5 +26,6 @@ function exercise_18() {
   Promise.all([promise1, promise2]).then((results) =>
     console.log("Results:", results)
   );
+  
   // CODE IN THE OPEN LINES ABOVE
 }
